@@ -1,4 +1,4 @@
-let timer = document.getElementById('timer');
+const timer = document.getElementById('timer');
 let countdownTimer = timer.textContent;
 let timerNew = prompt(
   'Установить время обратного отсчета в сек - ОК, как в исходнике - Отмена',  [120]);
