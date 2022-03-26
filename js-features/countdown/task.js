@@ -1,6 +1,6 @@
 const timer = document.getElementById('timer');
 let countdownTimer = timer.textContent;
-let timerNew = prompt('Установить время обратного отсчета в сек -> ОК, как в исходнике -> Отмена',  [120]);
+let timerNew = prompt('Установить время обратного отсчета в сек -> ОК\nКак в исходнике 59 сек -> Отмена',  [120]);
 if (timerNew) {
   if (timerNew < 10) {
     countdownTimer = '0' + timerNew;
