@@ -2,8 +2,7 @@ const body = document.querySelector('body');
 const menu = document.querySelector('.menu');
 body.innerHTML =
   body.innerHTML +
-  '<br><br><br><br></br>' +
-  '<ul class="menu menu_main">' +
+  '<ul class="menu menu_main" style="margin-top: 100px">' +
   menu.innerHTML +
   '</ul>';
 const menuLink = document.querySelectorAll('.menu__link');
