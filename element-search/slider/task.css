@@ -39,7 +39,7 @@ body {
   top: 0;
   bottom: 0;
   width: 50px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   display: flex;
   justify-content: center;
@@ -49,7 +49,7 @@ body {
 }
 
 .slider__arrow:hover {
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .slider__arrow_next {
@@ -67,12 +67,12 @@ body {
 }
 
 .slider__dot {
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #000;
   margin-right: 5px;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .slider__dot_active {
