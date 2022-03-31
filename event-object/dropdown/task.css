@@ -15,10 +15,11 @@
   display: inline-block;
   cursor: pointer;
   border-radius: 6px;
+  --arrow-symbol: '⇩';
 }
 
 .dropdown__value:after {
-  content: '\21E9';
+  content: var(--arrow-symbol);
   margin-left: 5px;
 }
 
