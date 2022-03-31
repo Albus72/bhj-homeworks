@@ -1,13 +1,18 @@
+let statusHtml = document.querySelector('.status');
+statusHtml.innerHTML = statusHtml.innerHTML + '<p>Осталось времени, сек.: <span class="status__timer">0</span></p>';
+
 class Game {
   constructor(container) {
     this.container = container;
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
+    this.timerElement = container.querySelector('.status__timer');
 
     this.reset();
 
     this.registerEvents();
+    this.timer();
   }
 
   reset() {
@@ -15,15 +20,43 @@ class Game {
     this.winsElement.textContent = 0;
     this.lossElement.textContent = 0;
   }
+  
+  timer() {
+    clearInterval(this.timerID);
+
+    this.keyNum = Array.from(document.querySelectorAll('.symbol')).length;
+    this.timerElement.textContent = this.keyNum;
+    let savedThis = this;
+
+    function timerFunc() {
+      if (savedThis.keyNum != 0) { 
+        savedThis.timerElement.textContent = savedThis.keyNum --;
+      } else {
+        savedThis.fail();
+        savedThis.timer();
+      }
+    }
+    
+    this.timerID = setInterval(timerFunc, 1000);
+  }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+    let savedThis = this;
+
+    function keyPressFunc(event) {
+      let keyText = savedThis.currentSymbol.textContent.toUpperCase();
+      let keyPress = event.key.toUpperCase();
+      if (keyText === keyPress) {
+        savedThis.success();
+      } 
+
+      if (keyText != keyPress) {
+        savedThis.fail();
+        savedThis.timer();
+      }
+    }
+
+    window.addEventListener('keyup', keyPressFunc);
   }
 
   success() {
@@ -38,6 +71,7 @@ class Game {
       this.reset();
     }
     this.setNewWord();
+    this.timer();
   }
 
   fail() {
@@ -87,4 +121,3 @@ class Game {
 }
 
 new Game(document.getElementById('game'))
-
