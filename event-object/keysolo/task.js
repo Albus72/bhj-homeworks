@@ -24,13 +24,13 @@ class Game {
   timer() {
     clearInterval(this.timerID);
 
-    this.keyNum = Array.from(document.querySelectorAll('.symbol')).length;
-    this.timerElement.textContent = this.keyNum;
+    this.symbolQuantity = Array.from(document.querySelectorAll('.symbol')).length;
+    this.timerElement.textContent = this.symbolQuantity;
     let savedThis = this;
 
     function timerFunc() {
-      if (savedThis.keyNum != 0) { 
-        savedThis.timerElement.textContent = savedThis.keyNum --;
+      if (savedThis.symbolQuantity != 0) { 
+        savedThis.timerElement.textContent = savedThis.symbolQuantity --;
       } else {
         savedThis.fail();
         savedThis.timer();
