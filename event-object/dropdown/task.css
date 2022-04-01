@@ -15,7 +15,7 @@
   display: inline-block;
   cursor: pointer;
   border-radius: 6px;
-  --arrow-symbol: '⇩';
+  --arrow-symbol: '\21E9';
 }
 
 .dropdown__value:after {

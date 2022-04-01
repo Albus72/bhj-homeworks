@@ -5,10 +5,10 @@ const dropdownLink = document.querySelectorAll('.dropdown__link');
 dropdownValue.addEventListener('click', function () {
   if (!dropdownList.classList.contains('dropdown__list_active')) {
     dropdownList.classList.add('dropdown__list_active');
-    document.getElementsByClassName('dropdown__value')[0].style = "--arrow-symbol: '⇧'";
+    document.getElementsByClassName('dropdown__value')[0].style = "--arrow-symbol: '\u21E7'";
   } else {
     dropdownList.classList.remove('dropdown__list_active');
-    document.getElementsByClassName('dropdown__value')[0].style = "--arrow-symbol: '⇩'";
+    document.getElementsByClassName('dropdown__value')[0].style = "--arrow-symbol: '\u21E9'";
   }
 });
 
@@ -17,6 +17,6 @@ for (let i = 0; i < dropdownLink.length; i++) {
     event.preventDefault();
     dropdownValue.innerText = this.innerText;
     dropdownList.classList.remove('dropdown__list_active');
-    document.getElementsByClassName('dropdown__value')[0].style = "--arrow-symbol: '⇩'";
+    document.getElementsByClassName('dropdown__value')[0].style = "--arrow-symbol: '\u21E9'";
   });
 }
