@@ -19,7 +19,7 @@
 }
 
 .dropdown__value:after {
-  content: var(--arrow-symbol);
+  content: var(--arrow-symbol, '\21E9');
   margin-left: 5px;
 }
 
