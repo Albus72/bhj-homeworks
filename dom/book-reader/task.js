@@ -42,7 +42,6 @@ function conditions(value, firstArt, secondAtr, thirdAtr, firstClass, secondClas
 }
 
 function switchClasses(delFirstClass, delSecondClass, addClass) { 
-    book.classList.remove(delFirstClass);
-    book.classList.remove(delSecondClass);
+    book.classList.remove(delFirstClass, delSecondClass);
     book.classList.add(addClass);
 }
