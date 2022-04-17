@@ -1,0 +1,1 @@
+const arrInterestCheck = Array.from(document.querySelectorAll('.interest__check'));
