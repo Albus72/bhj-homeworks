@@ -68,7 +68,17 @@ class Autocomplete {
   }
 
   getMatches( text ) {
-   
+    this.option = Array.from(this.input.options);
+    const arrOption = [];
+    for (let i = 0; i < this.option.length; i++) {
+      if (this.option[i].textContent.toUpperCase().includes(this.searchInput.value.toUpperCase())) {
+        arrOption.push({
+          text: this.option[i].textContent,
+          value: this.option[i].value
+        })
+      }
+    }
+    return arrOption;
   }
 }
 
