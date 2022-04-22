@@ -1,49 +1,52 @@
-const hasTooltipArr = Array.from(document.querySelectorAll('.has-tooltip'));
-let positionArr = ['top', 'left', 'right', 'bottom'];
-const allTagA = document.getElementsByTagName('a');
+const hasTooltip = Array.from(document.querySelectorAll('.has-tooltip'));
+const hintPosition = ['top', 'left', 'right', 'bottom'];
+const allTagsA = document.getElementsByTagName('a');
+let windowWidth = window.innerWidth;
 
 function addTooltip(index) {
     let div = document.createElement('div');
     div.classList.add('tooltip');
-    div.innerText = hasTooltipArr[index].title;
-    hasTooltipArr[index].appendChild(div);
-    allTagA[index].removeAttribute('title');
+    div.innerText = hasTooltip[index].title;
+    hasTooltip[index].appendChild(div);
+    allTagsA[index].removeAttribute('title');
 }
 
 function position(index, children) {
-    let {top, left, right, bottom, height} = hasTooltipArr[index].getBoundingClientRect();
+    let {top, left, right, bottom, height} = hasTooltip[index].getBoundingClientRect();
     let childrenHeight = children.getBoundingClientRect().height;
     let childrenWidth = children.getBoundingClientRect().width;
 
-    if (hasTooltipArr[index].dataset.position === 'top') {
-        children.style = `left: ${left}px; top: ${top - childrenHeight}px`;
+    if (hasTooltip[index].dataset.position === 'top') {
+        children.style = `left: ${left}px; top: ${top - childrenHeight - 2}px`;
     }
-
-    if (hasTooltipArr[index].dataset.position === 'left') {
-        children.style = `left: ${left - childrenWidth}px; top: ${top - ((childrenHeight - height) / 2)}px`;
+    if (hasTooltip[index].dataset.position === 'left') {
+        if ((left - childrenWidth - 2) < 0) {
+            hasTooltip[index].dataset.position = 'bottom';
+            children.style = `left: ${left}px; top: ${bottom + 2}px`;
+        } else {
+            children.style = `left: ${left - childrenWidth - 2}px; top: ${top - ((childrenHeight - height) / 2)}px`;
+        }
     }
-
-    if (hasTooltipArr[index].dataset.position === 'right') {
-        children.style = `left: ${right}px; top: ${top - ((childrenHeight - height) / 2)}px`;
+    if (hasTooltip[index].dataset.position === 'right') {
+        children.style = `left: ${right + 2}px; top: ${top - ((childrenHeight - height) / 2)}px`;
     }
-
-    if (hasTooltipArr[index].dataset.position === 'bottom') {
-        children.style = `left: ${left}px; top: ${bottom}px`;
+    if (hasTooltip[index].dataset.position === 'bottom') {
+        children.style = `left: ${left}px; top: ${bottom + 2}px`;
     }
 }
 
-for (let i = 0; i < hasTooltipArr.length; i++) {
+for (let i = 0; i < hasTooltip.length; i++) {
     addDataset(i);
     addTooltip(i);
     
-    let children = hasTooltipArr[i].querySelector('.tooltip');
+    let children = hasTooltip[i].querySelector('.tooltip');
 
-    hasTooltipArr[i].addEventListener('click', function(evtent) {
+    hasTooltip[i].addEventListener('click', function(evtent) {
         evtent.preventDefault();
         if (children.classList.contains('tooltip_active')) {
             children.classList.remove('tooltip_active');
         } else { 
-            hasTooltipArr.forEach(element => element.querySelector('div.tooltip').classList.remove('tooltip_active'));
+            hasTooltip.forEach(element => element.querySelector('div.tooltip').classList.remove('tooltip_active'));
             children.classList.add('tooltip_active');
         }
         position(i, children);
@@ -55,6 +58,6 @@ for (let i = 0; i < hasTooltipArr.length; i++) {
 }
 
 function addDataset(index) {
-    randomPosition = Math.floor(Math.random() * positionArr.length);
-    hasTooltipArr[index].dataset.position = positionArr[randomPosition];  
+    randomPosition = Math.floor(Math.random() * hintPosition.length);
+    hasTooltip[index].dataset.position = hintPosition[randomPosition];  
 }
