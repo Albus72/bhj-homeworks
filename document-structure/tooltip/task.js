@@ -15,24 +15,25 @@ function position(index, children) {
     let {top, left, right, bottom, height} = hasTooltip[index].getBoundingClientRect();
     let childrenHeight = children.getBoundingClientRect().height;
     let childrenWidth = children.getBoundingClientRect().width;
-
+    let positionOnPage;
     if (hasTooltip[index].dataset.position === 'top') {
-        children.style = `left: ${left}px; top: ${top - childrenHeight - 2}px`;
+        positionOnPage = `left: ${left}px; top: ${top - childrenHeight - 2}px`;
     }
     if (hasTooltip[index].dataset.position === 'left') {
         if ((left - childrenWidth - 2) < 0) {
             hasTooltip[index].dataset.position = 'bottom';
-            children.style = `left: ${left}px; top: ${bottom + 2}px`;
+            positionOnPage = `left: ${left}px; top: ${bottom + 2}px`;
         } else {
-            children.style = `left: ${left - childrenWidth - 2}px; top: ${top - ((childrenHeight - height) / 2)}px`;
+            positionOnPage = `left: ${left - childrenWidth - 2}px; top: ${top - ((childrenHeight - height) / 2)}px`;
         }
     }
     if (hasTooltip[index].dataset.position === 'right') {
-        children.style = `left: ${right + 2}px; top: ${top - ((childrenHeight - height) / 2)}px`;
+        positionOnPage = `left: ${right + 2}px; top: ${top - ((childrenHeight - height) / 2)}px`;
     }
     if (hasTooltip[index].dataset.position === 'bottom') {
-        children.style = `left: ${left}px; top: ${bottom + 2}px`;
+        positionOnPage = `left: ${left}px; top: ${bottom + 2}px`;
     }
+    children.style = positionOnPage;
 }
 
 for (let i = 0; i < hasTooltip.length; i++) {
