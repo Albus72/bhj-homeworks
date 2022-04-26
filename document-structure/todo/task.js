@@ -5,7 +5,7 @@ let notes = JSON.parse(localStorage.getItem('notes'));
 let taskRemove = tasksList.getElementsByClassName('task__remove');
 
 if (notes != null) {  
-    for (let i = notes.length - 1; i >= 0; i--) {
+    for (let i = 0; i < notes.length; i++) {
         htmlNoteAdd(notes[i]);
         taskRemoteFunc(taskRemove[i]);
     }
@@ -18,6 +18,9 @@ function taskRemoteFunc(node) {
         let taskTitle = task.querySelector('.task__title').innerText;
         updateLocalStorage(null, taskTitle);
         task.remove();
+        if (notes.length === 0) {
+            localStorage.clear();
+        }
     })
 }
 
