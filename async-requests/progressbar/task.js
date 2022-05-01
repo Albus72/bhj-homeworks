@@ -10,12 +10,7 @@ form.addEventListener('submit', function (evt) {
   };
 
   xhr.onprogress = function (event) {
-    console.log(
-      'Получено с сервера ' +
-        (event.loaded / 1024 / 1024).toFixed(2) +
-        ' МБ из ' +
-        event.total
-    );
+    console.log('Загружено ' + (event.loaded / 1024 / 1024).toFixed(2) + ' МБ');
   };
 
   xhr.open('POST', 'https://netology-slow-rest.herokuapp.com/upload.php', true);
