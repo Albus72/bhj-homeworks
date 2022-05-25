@@ -35,22 +35,12 @@ function authorization(id) {
   userId.innerText = id;
 
   let signOut = document.getElementById('sign__out');
+
   if (signOut) {
     signOut.addEventListener('click', function () {
       localStorage.removeItem('userId');
-      signOut.remove();
+      authorization(null);
       form.reset();
     });
   }
-  authorization();
-  // if (!signOut) {
-  //   signOut = document.getElementById('sign__out');
-  //   signOut.addEventListener('click', function () {
-  //     authorization('');
-  //     signOut.remove();
-  //   });
-  // } else {
-  //   localStorage.removeItem('userId');
-  //   form.reset();
-  // }
 }
