@@ -3,6 +3,13 @@ const form = document.getElementById('signin__form');
 const welcome = document.getElementById('welcome');
 const userId = document.getElementById('user_id');
 const localUserId = localStorage.getItem('userId');
+const signOut = document.getElementById('sign__out');
+
+function authorization(id) {
+  signin.classList.toggle('signin_active');
+  welcome.classList.toggle('welcome_active');
+  userId.innerText = id;
+}
 
 if (localUserId != null) {
   authorization(localUserId);
@@ -29,18 +36,8 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
 });
 
-function authorization(id) {
-  signin.classList.toggle('signin_active');
-  welcome.classList.toggle('welcome_active');
-  userId.innerText = id;
-
-  let signOut = document.getElementById('sign__out');
-
-  if (signOut) {
-    signOut.addEventListener('click', function () {
-      localStorage.removeItem('userId');
-      authorization(null);
-      form.reset();
-    });
-  }
-}
+signOut.addEventListener('click', function () {
+  localStorage.removeItem('userId');
+  authorization(null);
+  form.reset();
+});
